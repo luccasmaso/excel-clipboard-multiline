@@ -9,18 +9,14 @@ var ExcelClipboardMultiline = ({headers}) => {
     console.log(result)
   }
 
-  const mapToJson = (_, rows) => {
-    const {headers, fills} = sheets.find((sheet) => type == sheet.type)
-
-    var lastRefRow = null
-
+  const mapToJson = (header, rows) => {
     return rows.reduce((acc, row) => {
       return [
         ...acc, 
-        headers.reduce((acc2, header, index) => {
+        header.reduce((acc2, headerItem, index) => {
           return {
             ...acc2,
-            [header]: row[index]
+            [headerItem]: row[index]
           }
         }, {})
       ]
