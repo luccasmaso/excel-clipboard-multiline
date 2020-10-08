@@ -1,6 +1,6 @@
 import React from 'react'
 
-var ExcelClipboardMultiline = () => {
+var ExcelClipboardMultiline = ({headers}) => {
 
   const process = async (event) => {
     const [header, rows, types] = await buildFromClipboard(event)
@@ -50,8 +50,6 @@ var ExcelClipboardMultiline = () => {
   }
 
   const separateRows = (text) => {
-    const {headers} = sheets.find((sheet) => type == sheet.type)
-
     return text.match(new RegExp(`(^(?:[^\t]*\t){${headers.length - 1}}[^\t]*$)`, 'gm'))
   }
 
@@ -97,6 +95,7 @@ var ExcelClipboardMultiline = () => {
   return (
     <input 
       onPaste={process} 
+      headers={4}
       placeholder="Import with ctrl + c ~> ctrl + v" 
       value="" 
     />
