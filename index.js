@@ -1,12 +1,9 @@
 import React from 'react'
 
 var ExcelClipboardMultiline = ({headers}) => {
-
   const process = async (event) => {
     const [header, rows, types] = await buildFromClipboard(event)
     const result = mapToJson(header, rows)
-
-    console.log(result)
   }
 
   const mapToJson = (header, rows) => {
